@@ -21,6 +21,7 @@ body {
     background: var(--bg-color);
     color: var(--text-color);
     font-family: 'Ubuntu', sans-serif;
+    line-height: 1.6;
 }
 
 /* Navbar styling */
@@ -28,10 +29,11 @@ body {
     position: fixed;
     width: 100%;
     padding: 25px 0;
-    background: rgba(31, 31, 31, 0.95);
+    background: rgba(10, 10, 10, 0.95);
     backdrop-filter: blur(10px);
     z-index: 999;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-bottom: 1px solid rgba(100, 255, 218, 0.1);
 }
 
 .navbar .max-width {
@@ -66,6 +68,7 @@ body {
     font-weight: 500;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
+    padding: 5px 0;
 }
 
 .navbar .menu li a::after {
@@ -73,14 +76,15 @@ body {
     position: absolute;
     width: 100%;
     height: 2px;
-    bottom: -5px;
+    bottom: 0;
     left: 0;
     background-color: var(--primary-color);
     transform: scaleX(0);
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.navbar .menu li a:hover::after {
+.navbar .menu li a:hover::after,
+.navbar .menu li a.active::after {
     transform: scaleX(1);
 }
 
@@ -88,9 +92,8 @@ body {
 .home {
     display: flex;
     background: var(--bg-color);
-    height: 100vh;
-    min-height: 500px;
-    padding-top: 100px;
+    min-height: 100vh;
+    padding: 200px 0 100px;
 }
 
 .home .max-width {
@@ -108,23 +111,27 @@ body {
 }
 
 .home .home-content .text-1 {
-    font-size: 27px;
+    font-size: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--primary-color);
     opacity: 0;
     animation: fadeInUp 1s ease forwards;
     animation-delay: 0.2s;
 }
 
 .home .home-content .text-2 {
-    font-size: 75px;
-    font-weight: 600;
+    font-size: 80px;
+    font-weight: 700;
+    margin: 20px 0;
     opacity: 0;
     animation: fadeInUp 1s ease forwards;
     animation-delay: 0.4s;
+    line-height: 1.2;
 }
 
 .home .home-content .text-3 {
-    font-size: 40px;
-    margin: 5px 0;
+    font-size: 32px;
     opacity: 0;
     animation: fadeInUp 1s ease forwards;
     animation-delay: 0.6s;
@@ -136,10 +143,10 @@ body {
 }
 
 .home .home-content .hire-me {
-    text-align: left;
+    text-align: center;
     margin-top: 50px;
     opacity: 0;
-    animation: slideInLeft 1s ease forwards;
+    animation: fadeInUp 1s ease forwards;
     animation-delay: 0.8s;
 }
 
@@ -147,17 +154,19 @@ body {
     display: inline-block;
     background: var(--primary-color);
     color: var(--bg-color);
-    font-size: 25px;
+    font-size: 18px;
     padding: 15px 40px;
-    border-radius: 6px;
+    border-radius: 4px;
     border: 2px solid var(--primary-color);
     font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .home .home-content .hire-me a:hover {
     color: var(--primary-color);
-    background: none;
+    background: transparent;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(100, 255, 218, 0.2);
 }
@@ -165,6 +174,14 @@ body {
 /* Sections common styling */
 section {
     padding: 100px 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+section.active {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .about, .skills, .projects, .contact {
@@ -172,18 +189,19 @@ section {
 }
 
 .max-width {
-    max-width: 1300px;
+    max-width: 1200px;
     margin: auto;
     padding: 0 80px;
 }
 
 section .title {
     font-size: 40px;
-    font-weight: 500;
+    font-weight: 700;
     margin-bottom: 60px;
     padding-bottom: 20px;
     position: relative;
     text-align: center;
+    color: var(--primary-color);
 }
 
 section .title::before {
@@ -197,14 +215,44 @@ section .title::before {
     transform: translateX(-50%);
 }
 
+/* About section */
+.about-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    align-items: center;
+}
+
+.about .left p {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Skills section */
+.skills-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.skills .card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 8px;
+    transition: all 0.4s ease;
+}
+
+.skills .card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
 /* Animations */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 @keyframes fadeInUp {
@@ -218,18 +266,13 @@ section .title::before {
     }
 }
 
-@keyframes slideInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
+/* Responsive design */
+@media (max-width: 1200px) {
+    .max-width {
+        padding: 0 50px;
     }
 }
 
-/* Responsive design */
 @media (max-width: 947px) {
     .navbar .max-width {
         padding: 0 50px;
@@ -272,5 +315,19 @@ section .title::before {
     
     .home .home-content .text-3 {
         font-size: 35px;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 690px) {
+    .home .home-content .text-2 {
+        font-size: 50px;
+    }
+    
+    .home .home-content .text-3 {
+        font-size: 27px;
     }
 }

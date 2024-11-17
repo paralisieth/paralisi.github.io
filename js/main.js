@@ -241,6 +241,60 @@ $(document).ready(function(){
         $('.menu-btn i').toggleClass("active");
     });
 
+    // Close menu when clicking a link
+    $('.navbar .menu li a').click(function(){
+        $('.navbar .menu').removeClass("active");
+        $('.menu-btn i').removeClass("active");
+    });
+
+    // Smooth scroll and section animation
+    $('a[href*="#"]').on('click', function(e) {
+        e.preventDefault();
+        
+        let target = $($(this).attr('href'));
+        
+        $('html, body').animate({
+            scrollTop: target.offset().top - 100
+        }, 800, 'easeInOutQuart', function() {
+            target.addClass('active');
+        });
+    });
+
+    // Section visibility animation
+    function handleScroll() {
+        let windowHeight = $(window).height();
+        let scrollTop = $(window).scrollTop();
+
+        $('section').each(function() {
+            let elementTop = $(this).offset().top;
+            let elementVisible = 150;
+
+            if (elementTop < (scrollTop + windowHeight - elementVisible)) {
+                $(this).addClass('active');
+            }
+        });
+    }
+
+    // Initial check for visible sections
+    handleScroll();
+
+    // Check for visible sections on scroll
+    $(window).scroll(function() {
+        handleScroll();
+    });
+
+    // Active navigation highlighting
+    $(window).scroll(function(){
+        let scrollDistance = $(window).scrollTop() + 300;
+        
+        $('section').each(function(i) {
+            if ($(this).position().top <= scrollDistance) {
+                $('.navbar .menu a.active').removeClass('active');
+                $('.navbar .menu a').eq(i).addClass('active');
+            }
+        });
+    }).scroll();
+
     // Scroll to sections
     $('.menu-btn').click(function(){
         $('.navbar .menu').toggleClass("active");
