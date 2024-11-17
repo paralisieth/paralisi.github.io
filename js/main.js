@@ -217,3 +217,59 @@ const showError = (input, message) => {
         errorDiv.remove();
     }, 3000);
 };
+
+// Interactive features with jQuery
+$(document).ready(function(){
+    // Typing animation
+    var typed = new Typed(".typing", {
+        strings: ["Developer", "Python Expert", "UI Designer"],
+        typeSpeed: 100,
+        backSpeed: 60,
+        loop: true
+    });
+
+    var typed2 = new Typed(".typing-2", {
+        strings: ["Developer", "Python Expert", "UI Designer"],
+        typeSpeed: 100,
+        backSpeed: 60,
+        loop: true
+    });
+
+    // Toggle menu/navbar
+    $('.menu-btn').click(function(){
+        $('.navbar .menu').toggleClass("active");
+        $('.menu-btn i').toggleClass("active");
+    });
+
+    // Scroll to sections
+    $('.menu-btn').click(function(){
+        $('.navbar .menu').toggleClass("active");
+        $('.menu-btn i').toggleClass("active");
+    });
+
+    // Highlight active section in navigation
+    $(window).scroll(function(){
+        var scrollDistance = $(window).scrollTop();
+        
+        // Assign active class to nav items
+        $('section').each(function(i) {
+            if ($(this).position().top <= scrollDistance + 200) {
+                $('.navbar .menu a.active').removeClass('active');
+                $('.navbar .menu a').eq(i).addClass('active');
+            }
+        });
+    }).scroll();
+
+    // Smooth scrolling
+    $('a[href*="#"]').on('click', function(e) {
+        e.preventDefault();
+        
+        $('html, body').animate(
+            {
+                scrollTop: $($(this).attr('href')).offset().top,
+            },
+            500,
+            'linear'
+        );
+    });
+});
