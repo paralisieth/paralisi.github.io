@@ -13,6 +13,10 @@
     --secondary-color: #1f1f1f;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background: var(--bg-color);
     color: var(--text-color);
@@ -23,8 +27,9 @@ body {
 .navbar {
     position: fixed;
     width: 100%;
-    padding: 15px 0;
-    background: var(--secondary-color);
+    padding: 25px 0;
+    background: rgba(31, 31, 31, 0.95);
+    backdrop-filter: blur(10px);
     z-index: 999;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -33,6 +38,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 0 80px;
 }
 
 .navbar .logo a {
@@ -45,22 +51,37 @@ body {
     color: var(--primary-color);
 }
 
+.navbar .menu {
+    display: flex;
+    gap: 35px;
+}
+
 .navbar .menu li {
     list-style: none;
-    display: inline-block;
 }
 
 .navbar .menu li a {
-    display: block;
     color: var(--text-color);
     font-size: 18px;
     font-weight: 500;
-    margin-left: 25px;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
 }
 
-.navbar .menu li a:hover {
-    color: var(--primary-color);
+.navbar .menu li a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--primary-color);
+    transform: scaleX(0);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar .menu li a:hover::after {
+    transform: scaleX(1);
 }
 
 /* Home section styling */
@@ -69,8 +90,7 @@ body {
     background: var(--bg-color);
     height: 100vh;
     min-height: 500px;
-    font-family: 'Ubuntu', sans-serif;
-    text-align: center;
+    padding-top: 100px;
 }
 
 .home .max-width {
@@ -78,26 +98,36 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: auto;
 }
 
 .home .home-content {
-    width: 100%;
-    animation: fadeInUp 1s ease;
+    text-align: center;
+    max-width: 800px;
+    padding: 0 50px;
+    animation: fadeIn 1s ease;
 }
 
 .home .home-content .text-1 {
     font-size: 27px;
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.2s;
 }
 
 .home .home-content .text-2 {
     font-size: 75px;
     font-weight: 600;
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.4s;
 }
 
 .home .home-content .text-3 {
     font-size: 40px;
     margin: 5px 0;
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.6s;
 }
 
 .home .home-content .text-3 span {
@@ -107,162 +137,76 @@ body {
 
 .home .home-content .hire-me {
     text-align: left;
-    margin-top: 30px;
-    animation: slideInLeft 1s ease;
+    margin-top: 50px;
+    opacity: 0;
+    animation: slideInLeft 1s ease forwards;
+    animation-delay: 0.8s;
 }
 
-.home .home-content a {
+.home .home-content .hire-me a {
     display: inline-block;
     background: var(--primary-color);
     color: var(--bg-color);
     font-size: 25px;
-    padding: 12px 36px;
-    margin-top: 20px;
+    padding: 15px 40px;
     border-radius: 6px;
     border: 2px solid var(--primary-color);
+    font-weight: 500;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.home .home-content a:hover {
+.home .home-content .hire-me a:hover {
     color: var(--primary-color);
     background: none;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(100, 255, 218, 0.2);
 }
 
-/* Common styling for sections */
+/* Sections common styling */
 section {
     padding: 100px 0;
+}
+
+.about, .skills, .projects, .contact {
     text-align: center;
 }
 
 .max-width {
     max-width: 1300px;
-    padding: 0 80px;
     margin: auto;
-}
-
-.about, .skills, .projects, .contact, footer {
-    font-family: 'Ubuntu', sans-serif;
+    padding: 0 80px;
 }
 
 section .title {
-    position: relative;
-    text-align: center;
     font-size: 40px;
     font-weight: 500;
     margin-bottom: 60px;
     padding-bottom: 20px;
-    font-family: 'Ubuntu', sans-serif;
+    position: relative;
+    text-align: center;
 }
 
 section .title::before {
     content: "";
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
     left: 50%;
     width: 180px;
     height: 3px;
-    background: var(--text-color);
-    transform: translateX(-50%);
-}
-
-section .title::after {
-    content: "who i am";
-    position: absolute;
-    bottom: -12px;
-    left: 50%;
-    font-size: 20px;
-    color: var(--primary-color);
-    padding: 5px;
-    background: var(--bg-color);
-    transform: translateX(-50%);
-}
-
-/* Button styling */
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
     background: var(--primary-color);
-    color: var(--bg-color);
-    border-radius: 6px;
-    font-weight: 500;
-    border: 2px solid var(--primary-color);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.btn:hover {
-    color: var(--primary-color);
-    background: none;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(100, 255, 218, 0.2);
-}
-
-/* Responsive styling */
-@media (max-width: 991px) {
-    .max-width {
-        padding: 0 50px;
-    }
-}
-
-@media (max-width: 947px) {
-    .menu-btn {
-        display: block;
-        z-index: 999;
-    }
-    .navbar .menu {
-        position: fixed;
-        height: 100vh;
-        width: 100%;
-        left: -100%;
-        top: 0;
-        background: var(--secondary-color);
-        text-align: center;
-        padding-top: 80px;
-        transition: all 0.3s ease;
-    }
-    .navbar .menu.active {
-        left: 0;
-    }
-    .navbar .menu li {
-        display: block;
-    }
-    .navbar .menu li a {
-        display: inline-block;
-        margin: 20px 0;
-        font-size: 25px;
-    }
-    .home .home-content .text-2 {
-        font-size: 70px;
-    }
-    .home .home-content .text-3 {
-        font-size: 35px;
-    }
-    .home .home-content a {
-        font-size: 23px;
-        padding: 10px 30px;
-    }
-    .max-width {
-        max-width: 800px;
-    }
-}
-
-@media (max-width: 690px) {
-    .max-width {
-        padding: 0 23px;
-    }
-    .home .home-content .text-2 {
-        font-size: 60px;
-    }
-    .home .home-content .text-3 {
-        font-size: 32px;
-    }
-    .home .home-content a {
-        font-size: 20px;
-    }
+    transform: translateX(-50%);
 }
 
 /* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -285,24 +229,48 @@ section .title::after {
     }
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
+/* Responsive design */
+@media (max-width: 947px) {
+    .navbar .max-width {
+        padding: 0 50px;
     }
-    to {
-        opacity: 1;
+    
+    .menu-btn {
+        display: block;
+        z-index: 999;
     }
-}
-
-/* Center all section content */
-.about-content, .skills-content, .projects-content, .contact-content {
-    text-align: center;
-    animation: fadeIn 1s ease;
-}
-
-/* Smoother navbar transitions */
-.navbar.sticky {
-    padding: 15px 0;
-    background: rgba(31, 31, 31, 0.95);
-    backdrop-filter: blur(10px);
+    
+    .navbar .menu {
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        left: -100%;
+        top: 0;
+        background: var(--secondary-color);
+        text-align: center;
+        padding-top: 80px;
+        transition: all 0.3s ease;
+    }
+    
+    .navbar .menu.active {
+        left: 0;
+    }
+    
+    .navbar .menu li {
+        display: block;
+    }
+    
+    .navbar .menu li a {
+        display: inline-block;
+        margin: 20px 0;
+        font-size: 25px;
+    }
+    
+    .home .home-content .text-2 {
+        font-size: 70px;
+    }
+    
+    .home .home-content .text-3 {
+        font-size: 35px;
+    }
 }
