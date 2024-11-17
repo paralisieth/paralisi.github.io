@@ -3,144 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paralisi - Software Developer Portfolio</title>
+    <title>Paralisi | Software Developer</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-content">
-            <div class="logo">
-                <a href="#home">Portfolio</a>
-            </div>
+    <header>
+        <nav>
+            <div class="logo">Paralisi</div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
+                <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="menu-btn">
-                <i class="fas fa-bars"></i>
+            <div class="theme-toggle">
+                <i class="fas fa-moon"></i>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Hi, I'm <span class="highlight">Paralisi</span></h1>
-            <p class="lead">Software Developer & GitHub Tools Creator</p>
-            <div class="social-links">
-                <a href="https://github.com/paralisieth" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="mailto:paralisi.dev@gmail.com"><i class="fas fa-envelope"></i></a>
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Hi 👋, I'm <span class="highlight">Paralisi</span></h1>
+                <p class="typing-text">I build things for the web</p>
+                <div class="social-links">
+                    <a href="https://github.com/paralisieth" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="mailto:paralisi.dev@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+                <a href="#projects" class="cta-button">View My Work</a>
             </div>
-            <a href="#contact" class="cta-btn">Get In Touch</a>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
+        <section id="about" class="about">
             <h2>About Me</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>I'm a passionate software developer with a focus on creating elegant solutions to complex problems. With experience in Python development, I enjoy building tools that enhance developer productivity and streamline workflows.</p>
-                    <p>My recent work includes the GitHub Topics Updater, a GUI tool that simplifies repository topic management with over 200 predefined topics and real-time search functionality.</p>
-                </div>
-                <div class="about-image">
-                    <img src="img/profile.jpg" alt="Paralisi">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2>Skills & Technologies</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <i class="fas fa-code"></i>
-                    <h3>Languages</h3>
-                    <ul>
-                        <li>Python</li>
-                        <li>JavaScript</li>
-                        <li>HTML/CSS</li>
-                        <li>Git</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-laptop-code"></i>
-                    <h3>Frameworks</h3>
-                    <ul>
-                        <li>Tkinter</li>
-                        <li>GitHub API</li>
-                        <li>REST APIs</li>
-                        <li>Web Dev</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-tools"></i>
-                    <h3>Tools</h3>
-                    <ul>
-                        <li>VS Code</li>
-                        <li>Git</li>
-                        <li>GitHub</li>
-                        <li>PyPI</li>
-                    </ul>
+                    <p>I'm a passionate software developer focused on creating efficient and user-friendly applications. My recent project, the GitHub Topics Updater, demonstrates my commitment to building tools that enhance developer productivity.</p>
+                    <div class="skills">
+                        <h3>Skills & Technologies</h3>
+                        <div class="skill-tags">
+                            <span>Python</span>
+                            <span>JavaScript</span>
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>Git</span>
+                            <span>GitHub API</span>
+                            <span>Tkinter</span>
+                            <span>REST APIs</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
+        <section id="projects" class="projects">
             <h2>Featured Projects</h2>
-            <div class="projects-grid">
+            <div class="project-grid">
                 <div class="project-card">
                     <img src="img/project1.jpg" alt="GitHub Topics Updater">
-                    <h3>GitHub Topics Updater</h3>
-                    <p>A powerful GUI tool for managing GitHub repository topics. Features include 200+ predefined topics, real-time search, custom topic addition, and secure GitHub token-based authentication.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/paralisieth/topic-updater" target="_blank">Code <i class="fab fa-github"></i></a>
-                        <a href="https://github.com/paralisieth/topic-updater/releases" target="_blank">Download <i class="fas fa-download"></i></a>
+                    <div class="project-content">
+                        <h3>GitHub Topics Updater</h3>
+                        <p>A GUI application for managing GitHub repository topics with real-time search and custom topic support.</p>
+                        <div class="project-tags">
+                            <span>Python</span>
+                            <span>Tkinter</span>
+                            <span>GitHub API</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/paralisieth/topic-updater" target="_blank" class="github-link">
+                                <i class="fab fa-github"></i> View Source
+                            </a>
+                            <a href="https://github.com/paralisieth/topic-updater#readme" target="_blank" class="demo-link">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <!-- Add more project cards as needed -->
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
+        <section id="contact" class="contact">
             <h2>Get In Touch</h2>
             <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <h3>Email</h3>
-                        <p><a href="mailto:paralisi.dev@gmail.com">paralisi.dev@gmail.com</a></p>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fab fa-github"></i>
-                        <h3>GitHub</h3>
-                        <p><a href="https://github.com/paralisieth" target="_blank">github.com/paralisieth</a></p>
-                    </div>
+                <p>I'm always interested in hearing about new projects and opportunities. Feel free to reach out!</p>
+                <a href="mailto:paralisi.dev@gmail.com" class="cta-button">
+                    <i class="fas fa-envelope"></i> Say Hello
+                </a>
+                <div class="social-links">
+                    <a href="https://github.com/paralisieth" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="mailto:paralisi.dev@gmail.com"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Paralisi. All rights reserved.</p>
-        </div>
+    <footer>
+        <p> 2024 Paralisi. Built with <i class="fas fa-heart"></i></p>
     </footer>
 
     <script src="js/main.js"></script>
