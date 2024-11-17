@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Placeholder Images</title>
+</head>
+<body>
+    <canvas id="profileCanvas" width="400" height="400"></canvas>
+    <canvas id="projectCanvas" width="800" height="400"></canvas>
+    <script>
+        // Profile Image
+        const profileCanvas = document.getElementById('profileCanvas');
+        const pctx = profileCanvas.getContext('2d');
+        
+        // Background
+        pctx.fillStyle = '#f3f4f6';
+        pctx.fillRect(0, 0, 400, 400);
+        
+        // Circle
+        pctx.beginPath();
+        pctx.arc(200, 160, 100, 0, Math.PI * 2);
+        pctx.fillStyle = '#2563eb';
+        pctx.fill();
+        
+        // Text
+        pctx.fillStyle = '#1f2937';
+        pctx.font = 'bold 24px Arial';
+        pctx.textAlign = 'center';
+        pctx.fillText('Profile', 200, 320);
+        
+        // Project Image
+        const projectCanvas = document.getElementById('projectCanvas');
+        const ctx = projectCanvas.getContext('2d');
+        
+        // Background
+        ctx.fillStyle = '#f3f4f6';
+        ctx.fillRect(0, 0, 800, 400);
+        
+        // Project Screenshot
+        ctx.fillStyle = '#2563eb';
+        ctx.fillRect(50, 50, 700, 250);
+        
+        // Window Controls
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(80, 80, 6, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(100, 80, 6, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(120, 80, 6, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Text
+        ctx.fillStyle = '#1f2937';
+        ctx.font = 'bold 24px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('GitHub Topics Updater', 400, 350);
+        
+        // Save images
+        const profileLink = document.createElement('a');
+        profileLink.download = 'profile.png';
+        profileLink.href = profileCanvas.toDataURL();
+        profileLink.click();
+        
+        const projectLink = document.createElement('a');
+        projectLink.download = 'project1.png';
+        projectLink.href = projectCanvas.toDataURL();
+        projectLink.click();
+    </script>
+</body>
+</html>

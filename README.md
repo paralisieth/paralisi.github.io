@@ -1,26 +1,45 @@
-# Personal Portfolio Website
+# Paralisi's Portfolio
 
-A modern, responsive portfolio website built with HTML5, CSS3, and JavaScript.
+A modern, responsive portfolio website showcasing my software development projects and skills.
 
-## 🚀 Features
+Visit: [paralisi.github.io](https://paralisi.github.io)
 
-- Modern and clean design
-- Fully responsive layout
-- Smooth scrolling navigation
-- Interactive project cards
-- Skills showcase
-- Contact information
-- Animated sections
-- Mobile-friendly navigation
+## 🚀 Featured Projects
 
-## 🛠️ Technologies Used
+### GitHub Topics Updater
+A powerful GUI tool for managing GitHub repository topics, featuring:
+- 200+ predefined topics across multiple categories
+- Real-time topic search functionality
+- Custom topic addition support
+- Secure GitHub token-based authentication
+- User-friendly interface built with Tkinter
 
-- HTML5
-- CSS3 (with CSS Variables)
-- JavaScript (ES6+)
-- Font Awesome Icons
-- Google Fonts
-- Intersection Observer API
+[View Project](https://github.com/paralisieth/topic-updater)
+
+## 🛠️ Technical Skills
+
+### Languages
+- Python
+- JavaScript
+- HTML/CSS
+- Git
+
+### Frameworks & APIs
+- Tkinter
+- GitHub API
+- REST APIs
+- Web Development
+
+### Tools
+- VS Code
+- Git
+- GitHub
+- PyPI
+
+## 📫 Contact
+
+- GitHub: [@paralisieth](https://github.com/paralisieth)
+- Email: paralisi.dev@gmail.com
 
 ## 📋 Sections
 
