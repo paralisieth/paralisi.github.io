@@ -6,6 +6,21 @@ menuBtn.addEventListener('click', () => {
     navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
 });
 
+// Sticky Navigation Menu
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+        document.querySelector('.navbar').classList.add("sticky");
+    } else {
+        document.querySelector('.navbar').classList.remove("sticky");
+    }
+});
+
+// Toggle Menu/Navbar
+document.querySelector('.menu-btn').addEventListener('click', () => {
+    document.querySelector('.navbar .menu').classList.toggle("active");
+    document.querySelector('.menu-btn i').classList.toggle("active");
+});
+
 // Typing animation
 const typingText = document.querySelector('.typing-text');
 const phrases = ['I build things for the web', 'I create developer tools', 'I love open source'];
