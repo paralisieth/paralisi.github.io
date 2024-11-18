@@ -1,5 +1,5 @@
-// Initialize GSAP ScrollTrigger
-gsap.registerPlugin(ScrollTrigger);
+// Initialize GSAP ScrollTrigger and ScrollTo
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 // Navigation Menu Toggle
 const menuBtn = document.querySelector('.menu-btn');
@@ -23,33 +23,43 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
+        
         if (target) {
-            // Get the navbar height for offset
-            const navHeight = 70;
-            // Get the target's position
-            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
-            // Current scroll position
-            const startPosition = window.pageYOffset;
-            // Distance to scroll
-            const distance = targetPosition - startPosition;
+            // First fade out all sections slightly
+            gsap.to('section', {
+                duration: 0.3,
+                opacity: 0.3,
+                ease: "power2.inOut"
+            });
 
+            // Scroll to target with animation
             gsap.to(window, {
-                duration: 1,
+                duration: 1.5,
                 scrollTo: {
-                    y: targetPosition,
+                    y: target,
+                    offsetY: 70,
                     autoKill: false
                 },
-                ease: "power2.inOut",
-                onStart: () => {
-                    // Add a class to the target section for a fade-in effect
-                    target.style.opacity = "0";
-                },
+                ease: "power4.inOut",
                 onComplete: () => {
-                    // Fade in the target section
+                    // Fade in all sections, but make target section more prominent
+                    gsap.to('section', {
+                        duration: 0.5,
+                        opacity: 0.6,
+                        ease: "power2.inOut"
+                    });
                     gsap.to(target, {
                         duration: 0.5,
                         opacity: 1,
-                        ease: "power2.out"
+                        ease: "power2.inOut",
+                        onComplete: () => {
+                            // Reset all sections to full opacity
+                            gsap.to('section', {
+                                duration: 0.3,
+                                opacity: 1,
+                                ease: "power2.inOut"
+                            });
+                        }
                     });
                 }
             });
@@ -61,7 +71,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 function initAnimations() {
     // Hero section animations
     gsap.from('.hero-content', {
-        duration: 1,
+        duration: 1.2,
         y: 100,
         opacity: 0,
         ease: 'power4.out',
