@@ -195,15 +195,6 @@ const showError = (input, message) => {
 
 // Interactive features with jQuery
 $(document).ready(function(){
-    // Sticky Navigation Menu
-    $(window).scroll(function(){
-        if(this.scrollY > 20){
-            $('.navbar').addClass("sticky");
-        }else{
-            $('.navbar').removeClass("sticky");
-        }
-    });
-
     // Toggle Menu/Navbar Script
     $('.menu-btn').click(function(){
         $('.navbar .menu').toggleClass("active");
@@ -231,27 +222,9 @@ $(document).ready(function(){
         $('.menu-btn i').removeClass("active");
     });
 
-    // Show sections on scroll
-    const sections = document.querySelectorAll("section");
-    
-    const revealSection = function(entries, observer) {
-        const [entry] = entries;
-        
-        if (!entry.isIntersecting) return;
-        
-        entry.target.style.opacity = 1;
-        entry.target.style.transform = "translateY(0)";
-        observer.unobserve(entry.target);
-    };
-    
-    const sectionObserver = new IntersectionObserver(revealSection, {
-        root: null,
-        threshold: 0.15,
-    });
-    
-    sections.forEach(function(section) {
-        sectionObserver.observe(section);
-        section.style.opacity = 0;
-        section.style.transform = "translateY(20px)";
+    // Make all sections visible immediately
+    $('section').css({
+        'opacity': '1',
+        'transform': 'none'
     });
 });
