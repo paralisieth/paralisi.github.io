@@ -372,36 +372,182 @@ const showError = (input, message) => {
 
 // Interactive features with jQuery
 $(document).ready(function(){
-    // Toggle Menu/Navbar Script
-    $('.menu-btn').click(function(){
-        $('.navbar .menu').toggleClass("active");
-        $('.menu-btn i').toggleClass("active");
+    // Navigation
+    const menuBtn = document.querySelector('.menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuBtn.addEventListener('click', () => {
+        menuBtn.classList.toggle('active');
+        navLinks.classList.toggle('active');
     });
 
-    // Typing Animation
-    var typed = new Typed(".typing", {
-        strings: ["Developer", "Python Expert", "UI Designer"],
-        typeSpeed: 100,
-        backSpeed: 60,
-        loop: true
+    // Close menu when clicking a link
+    $('.nav-link').on('click', function() {
+        menuBtn.classList.remove('active');
+        navLinks.classList.remove('active');
     });
 
-    // Smooth Scrolling
-    $('a[href*="#"]').on('click', function(e){
+    // Smooth scroll with GSAP
+    $('a[href^="#"]').on('click', function(e) {
         e.preventDefault();
         
-        $('html, body').animate({
-            scrollTop: $($(this).attr('href')).offset().top
-        }, 500, 'linear');
-        
-        // Close mobile menu after clicking a link
-        $('.navbar .menu').removeClass("active");
-        $('.menu-btn i').removeClass("active");
+        const target = $($(this).attr('href'));
+        if (target.length) {
+            gsap.to(window, {
+                duration: 1,
+                scrollTo: {
+                    y: target,
+                    offsetY: 70
+                },
+                ease: "power3.inOut"
+            });
+        }
     });
 
-    // Make all sections visible immediately
-    $('section').css({
-        'opacity': '1',
-        'transform': 'none'
-    });
+    // Initialize animations
+    function initAnimations() {
+        // Hero section animations
+        gsap.from('.hero-content', {
+            duration: 1.2,
+            y: 100,
+            opacity: 0,
+            ease: 'power4.out',
+        });
+
+        // About section animations
+        gsap.from('.about-content', {
+            scrollTrigger: {
+                trigger: '.about-content',
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            },
+            duration: 1,
+            y: 50,
+            opacity: 0,
+            ease: 'power4.out',
+        });
+
+        // Skills list animation
+        gsap.from('.skills-list li', {
+            scrollTrigger: {
+                trigger: '.skills-list',
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            },
+            duration: 0.8,
+            y: 20,
+            opacity: 0,
+            stagger: 0.1,
+            ease: 'power4.out',
+        });
+
+        // Project cards animation
+        gsap.from('.project-card', {
+            scrollTrigger: {
+                trigger: '.projects-grid',
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            },
+            duration: 0.8,
+            y: 50,
+            opacity: 0,
+            stagger: 0.2,
+            ease: 'power4.out',
+        });
+
+        // Contact section animation
+        gsap.from('.contact-content', {
+            scrollTrigger: {
+                trigger: '.contact-content',
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            },
+            duration: 1,
+            y: 50,
+            opacity: 0,
+            ease: 'power4.out',
+        });
+    }
+
+    // Glitch effect
+    function initGlitchEffect() {
+        const glitchText = $('.glitch');
+        if (!glitchText.length) return;
+
+        const originalText = glitchText.text();
+        glitchText.attr('data-text', originalText);
+
+        let isGlitching = false;
+        
+        function startGlitch() {
+            if (isGlitching) return;
+            isGlitching = true;
+            
+            const duration = 50;
+            const iterations = 5;
+            let i = 0;
+            
+            const glitchInterval = setInterval(() => {
+                const glitchChars = '!<>-_\\/[]{}—=+*^?#________';
+                let glitchedText = '';
+                
+                for (let char of originalText) {
+                    if (Math.random() < 0.3) {
+                        glitchedText += glitchChars[Math.floor(Math.random() * glitchChars.length)];
+                    } else {
+                        glitchedText += char;
+                    }
+                }
+                
+                glitchText.text(glitchedText);
+                i++;
+                
+                if (i >= iterations) {
+                    clearInterval(glitchInterval);
+                    glitchText.text(originalText);
+                    isGlitching = false;
+                }
+            }, duration);
+        }
+
+        // Start glitch effect on hover
+        glitchText.on('mouseenter', startGlitch);
+    }
+
+    // Initialize everything
+    initAnimations();
+    initGlitchEffect();
+});
+
+// Toggle Menu/Navbar Script
+$('.menu-btn').click(function(){
+    $('.navbar .menu').toggleClass("active");
+    $('.menu-btn i').toggleClass("active");
+});
+
+// Typing Animation
+var typed = new Typed(".typing", {
+    strings: ["Developer", "Python Expert", "UI Designer"],
+    typeSpeed: 100,
+    backSpeed: 60,
+    loop: true
+});
+
+// Smooth Scrolling
+$('a[href*="#"]').on('click', function(e){
+    e.preventDefault();
+    
+    $('html, body').animate({
+        scrollTop: $($(this).attr('href')).offset().top
+    }, 500, 'linear');
+    
+    // Close mobile menu after clicking a link
+    $('.navbar .menu').removeClass("active");
+    $('.menu-btn i').removeClass("active");
+});
+
+// Make all sections visible immediately
+$('section').css({
+    'opacity': '1',
+    'transform': 'none'
 });
