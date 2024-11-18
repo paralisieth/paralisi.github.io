@@ -18,15 +18,40 @@ document.querySelectorAll('.nav-link').forEach(link => {
     });
 });
 
-// Smooth scroll
+// Enhanced smooth scroll with GSAP
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            window.scrollTo({
-                top: target.offsetTop - 70,
-                behavior: 'smooth'
+            // Get the navbar height for offset
+            const navHeight = 70;
+            // Get the target's position
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+            // Current scroll position
+            const startPosition = window.pageYOffset;
+            // Distance to scroll
+            const distance = targetPosition - startPosition;
+
+            gsap.to(window, {
+                duration: 1,
+                scrollTo: {
+                    y: targetPosition,
+                    autoKill: false
+                },
+                ease: "power2.inOut",
+                onStart: () => {
+                    // Add a class to the target section for a fade-in effect
+                    target.style.opacity = "0";
+                },
+                onComplete: () => {
+                    // Fade in the target section
+                    gsap.to(target, {
+                        duration: 0.5,
+                        opacity: 1,
+                        ease: "power2.out"
+                    });
+                }
             });
         }
     });
@@ -47,6 +72,7 @@ function initAnimations() {
         scrollTrigger: {
             trigger: '.about-content',
             start: 'top 80%',
+            toggleActions: 'play none none reverse'
         },
         duration: 1,
         y: 50,
@@ -59,6 +85,7 @@ function initAnimations() {
         scrollTrigger: {
             trigger: '.skills-list',
             start: 'top 80%',
+            toggleActions: 'play none none reverse'
         },
         duration: 0.8,
         y: 20,
@@ -72,6 +99,7 @@ function initAnimations() {
         scrollTrigger: {
             trigger: '.projects-grid',
             start: 'top 80%',
+            toggleActions: 'play none none reverse'
         },
         duration: 0.8,
         y: 50,
@@ -85,6 +113,7 @@ function initAnimations() {
         scrollTrigger: {
             trigger: '.contact-content',
             start: 'top 80%',
+            toggleActions: 'play none none reverse'
         },
         duration: 1,
         y: 50,
