@@ -6,21 +6,6 @@ menuBtn.addEventListener('click', () => {
     navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
 });
 
-// Sticky Navigation Menu
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 20) {
-        document.querySelector('.navbar').classList.add("sticky");
-    } else {
-        document.querySelector('.navbar').classList.remove("sticky");
-    }
-});
-
-// Toggle Menu/Navbar
-document.querySelector('.menu-btn').addEventListener('click', () => {
-    document.querySelector('.navbar .menu').classList.toggle("active");
-    document.querySelector('.menu-btn i').classList.toggle("active");
-});
-
 // Typing animation
 const typingText = document.querySelector('.typing-text');
 const phrases = ['I build things for the web', 'I create developer tools', 'I love open source'];
@@ -76,16 +61,6 @@ window.addEventListener('scroll', () => {
         if (link.getAttribute('href').slice(1) === current) {
             link.classList.add('active');
         }
-    });
-});
-
-// Smooth scrolling
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
     });
 });
 
@@ -220,114 +195,63 @@ const showError = (input, message) => {
 
 // Interactive features with jQuery
 $(document).ready(function(){
-    // Typing animation
-    if($(".typing").length) {
-        var typed = new Typed(".typing", {
-            strings: ["Developer", "Python Expert", "UI Designer"],
-            typeSpeed: 100,
-            backSpeed: 60,
-            loop: true
-        });
-    }
+    // Sticky Navigation Menu
+    $(window).scroll(function(){
+        if(this.scrollY > 20){
+            $('.navbar').addClass("sticky");
+        }else{
+            $('.navbar').removeClass("sticky");
+        }
+    });
 
-    if($(".typing-2").length) {
-        var typed2 = new Typed(".typing-2", {
-            strings: ["Developer", "Python Expert", "UI Designer"],
-            typeSpeed: 100,
-            backSpeed: 60,
-            loop: true
-        });
-    }
-
-    // Toggle menu/navbar
+    // Toggle Menu/Navbar Script
     $('.menu-btn').click(function(){
         $('.navbar .menu').toggleClass("active");
         $('.menu-btn i').toggleClass("active");
     });
 
-    // Close menu when clicking a link
-    $('.navbar .menu li a').click(function(){
+    // Typing Animation
+    var typed = new Typed(".typing", {
+        strings: ["Developer", "Python Expert", "UI Designer"],
+        typeSpeed: 100,
+        backSpeed: 60,
+        loop: true
+    });
+
+    // Smooth Scrolling
+    $('a[href*="#"]').on('click', function(e){
+        e.preventDefault();
+        
+        $('html, body').animate({
+            scrollTop: $($(this).attr('href')).offset().top
+        }, 500, 'linear');
+        
+        // Close mobile menu after clicking a link
         $('.navbar .menu').removeClass("active");
         $('.menu-btn i').removeClass("active");
     });
 
-    // Smooth scroll and section animation
-    $('a[href*="#"]').on('click', function(e) {
-        e.preventDefault();
+    // Show sections on scroll
+    const sections = document.querySelectorAll("section");
+    
+    const revealSection = function(entries, observer) {
+        const [entry] = entries;
         
-        let target = $($(this).attr('href'));
+        if (!entry.isIntersecting) return;
         
-        $('html, body').animate({
-            scrollTop: target.offset().top - 100
-        }, 800, 'easeInOutQuart', function() {
-            target.addClass('active');
-        });
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = "translateY(0)";
+        observer.unobserve(entry.target);
+    };
+    
+    const sectionObserver = new IntersectionObserver(revealSection, {
+        root: null,
+        threshold: 0.15,
     });
-
-    // Section visibility animation
-    function handleScroll() {
-        let windowHeight = $(window).height();
-        let scrollTop = $(window).scrollTop();
-
-        $('section').each(function() {
-            let elementTop = $(this).offset().top;
-            let elementVisible = 150;
-
-            if (elementTop < (scrollTop + windowHeight - elementVisible)) {
-                $(this).addClass('active');
-            }
-        });
-    }
-
-    // Initial check for visible sections
-    handleScroll();
-
-    // Check for visible sections on scroll
-    $(window).scroll(function() {
-        handleScroll();
-    });
-
-    // Active navigation highlighting
-    $(window).scroll(function(){
-        let scrollDistance = $(window).scrollTop() + 300;
-        
-        $('section').each(function(i) {
-            if ($(this).position().top <= scrollDistance) {
-                $('.navbar .menu a.active').removeClass('active');
-                $('.navbar .menu a').eq(i).addClass('active');
-            }
-        });
-    }).scroll();
-
-    // Scroll to sections
-    $('.menu-btn').click(function(){
-        $('.navbar .menu').toggleClass("active");
-        $('.menu-btn i').toggleClass("active");
-    });
-
-    // Highlight active section in navigation
-    $(window).scroll(function(){
-        var scrollDistance = $(window).scrollTop();
-        
-        // Assign active class to nav items
-        $('section').each(function(i) {
-            if ($(this).position().top <= scrollDistance + 200) {
-                $('.navbar .menu a.active').removeClass('active');
-                $('.navbar .menu a').eq(i).addClass('active');
-            }
-        });
-    }).scroll();
-
-    // Smooth scrolling
-    $('a[href*="#"]').on('click', function(e) {
-        e.preventDefault();
-        
-        $('html, body').animate(
-            {
-                scrollTop: $($(this).attr('href')).offset().top,
-            },
-            500,
-            'linear'
-        );
+    
+    sections.forEach(function(section) {
+        sectionObserver.observe(section);
+        section.style.opacity = 0;
+        section.style.transform = "translateY(20px)";
     });
 });
