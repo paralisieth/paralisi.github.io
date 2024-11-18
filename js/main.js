@@ -1,9 +1,147 @@
+// Initialize GSAP ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
+
 // Navigation Menu Toggle
 const menuBtn = document.querySelector('.menu-btn');
 const navLinks = document.querySelector('.nav-links');
 
 menuBtn.addEventListener('click', () => {
-    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+    menuBtn.classList.toggle('active');
+    navLinks.classList.toggle('active');
+});
+
+// Close menu when clicking a link
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        menuBtn.classList.remove('active');
+        navLinks.classList.remove('active');
+    });
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            window.scrollTo({
+                top: target.offsetTop - 70,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// Animations
+function initAnimations() {
+    // Hero section animations
+    gsap.from('.hero-content', {
+        duration: 1,
+        y: 100,
+        opacity: 0,
+        ease: 'power4.out',
+    });
+
+    // About section animations
+    gsap.from('.about-content', {
+        scrollTrigger: {
+            trigger: '.about-content',
+            start: 'top 80%',
+        },
+        duration: 1,
+        y: 50,
+        opacity: 0,
+        ease: 'power4.out',
+    });
+
+    // Skills list animation
+    gsap.from('.skills-list li', {
+        scrollTrigger: {
+            trigger: '.skills-list',
+            start: 'top 80%',
+        },
+        duration: 0.8,
+        y: 20,
+        opacity: 0,
+        stagger: 0.1,
+        ease: 'power4.out',
+    });
+
+    // Project cards animation
+    gsap.from('.project-card', {
+        scrollTrigger: {
+            trigger: '.projects-grid',
+            start: 'top 80%',
+        },
+        duration: 0.8,
+        y: 50,
+        opacity: 0,
+        stagger: 0.2,
+        ease: 'power4.out',
+    });
+
+    // Contact section animation
+    gsap.from('.contact-content', {
+        scrollTrigger: {
+            trigger: '.contact-content',
+            start: 'top 80%',
+        },
+        duration: 1,
+        y: 50,
+        opacity: 0,
+        ease: 'power4.out',
+    });
+}
+
+// Glitch effect
+function initGlitchEffect() {
+    const glitchText = document.querySelector('.glitch');
+    if (!glitchText) return;
+
+    const originalText = glitchText.textContent;
+    glitchText.setAttribute('data-text', originalText);
+
+    let isGlitching = false;
+    
+    function startGlitch() {
+        if (isGlitching) return;
+        isGlitching = true;
+        
+        const duration = 50;
+        const iterations = 5;
+        let i = 0;
+        
+        const glitchInterval = setInterval(() => {
+            const glitchChars = '!<>-_\\/[]{}—=+*^?#________';
+            let glitchedText = '';
+            
+            for (let char of originalText) {
+                if (Math.random() < 0.3) {
+                    glitchedText += glitchChars[Math.floor(Math.random() * glitchChars.length)];
+                } else {
+                    glitchedText += char;
+                }
+            }
+            
+            glitchText.textContent = glitchedText;
+            i++;
+            
+            if (i >= iterations) {
+                clearInterval(glitchInterval);
+                glitchText.textContent = originalText;
+                isGlitching = false;
+            }
+        }, duration);
+    }
+
+    // Start glitch effect on hover
+    glitchText.addEventListener('mouseenter', startGlitch);
+}
+
+// Initialize everything when the DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initAnimations();
+    initGlitchEffect();
 });
 
 // Typing animation
