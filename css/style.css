@@ -18,6 +18,7 @@
     text-decoration: none;
     border: none;
     outline: none;
+    color: var(--text-primary); /* Ensure all text is visible by default */
 }
 
 html {
@@ -28,7 +29,6 @@ html {
 body {
     font-family: 'Inter', sans-serif;
     background: var(--bg-primary);
-    color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
 }
@@ -85,11 +85,10 @@ h1, h2, h3, h4, h5, h6 {
 .logo {
     font-size: 2.4rem;
     font-weight: 700;
-    color: var(--text-primary);
 }
 
 .logo span {
-    color: var(--accent);
+    color: var(--accent) !important;
 }
 
 .nav-links {
@@ -99,12 +98,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-link {
     font-size: 1.6rem;
-    color: var(--text-secondary);
     transition: var(--transition);
 }
 
 .nav-link:hover {
-    color: var(--accent);
+    color: var(--accent) !important;
 }
 
 .menu-btn {
@@ -139,11 +137,11 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 6rem;
     margin-bottom: 2rem;
     position: relative;
+    color: var(--text-primary) !important;
 }
 
 .lead {
     font-size: 2rem;
-    color: var(--text-secondary);
     margin-bottom: 3rem;
 }
 
@@ -173,7 +171,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-outline {
     border: 2px solid var(--accent);
-    color: var(--accent);
+    color: var(--accent) !important;
 }
 
 .btn-outline:hover {
@@ -194,7 +192,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .about-text p {
     font-size: 1.8rem;
-    color: var(--text-secondary);
     margin-bottom: 2rem;
 }
 
@@ -216,10 +213,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .skills-list li {
     font-size: 1.4rem;
-    color: var(--text-secondary);
     background: var(--bg-secondary);
     padding: 0.8rem 1.6rem;
     border-radius: var(--border-radius);
+    color: var(--text-secondary) !important;
 }
 
 /* Projects Section */
@@ -263,24 +260,25 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .project-links a {
-    color: var(--text-secondary);
     font-size: 2rem;
     transition: var(--transition);
+    color: var(--text-secondary) !important;
 }
 
 .project-links a:hover {
-    color: var(--accent);
+    color: var(--accent) !important;
 }
 
 .project-title {
     font-size: 2rem;
     margin-bottom: 1rem;
+    color: var(--text-primary) !important;
 }
 
 .project-description {
     font-size: 1.6rem;
-    color: var(--text-secondary);
     margin-bottom: 2rem;
+    color: var(--text-secondary) !important;
 }
 
 .project-tech-list {
@@ -292,7 +290,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .project-tech-list li {
     font-size: 1.2rem;
-    color: var(--text-secondary);
+    color: var(--text-secondary) !important;
 }
 
 /* Contact Section */
@@ -308,8 +306,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .contact-content p {
     font-size: 1.8rem;
-    color: var(--text-secondary);
     margin-bottom: 3rem;
+    color: var(--text-secondary) !important;
 }
 
 .contact-links {
@@ -324,12 +322,11 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     gap: 1rem;
     font-size: 1.8rem;
-    color: var(--text-primary);
     transition: var(--transition);
 }
 
 .contact-link:hover {
-    color: var(--accent);
+    color: var(--accent) !important;
 }
 
 /* Footer */
@@ -341,8 +338,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .footer p {
     font-size: 1.4rem;
-    color: var(--text-secondary);
     margin-bottom: 2rem;
+    color: var(--text-secondary) !important;
 }
 
 .social-links {
@@ -352,13 +349,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .social-links a {
-    color: var(--text-secondary);
     font-size: 2rem;
     transition: var(--transition);
 }
 
 .social-links a:hover {
-    color: var(--accent);
+    color: var(--accent) !important;
 }
 
 /* Animations */
