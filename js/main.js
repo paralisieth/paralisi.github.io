@@ -221,19 +221,23 @@ const showError = (input, message) => {
 // Interactive features with jQuery
 $(document).ready(function(){
     // Typing animation
-    var typed = new Typed(".typing", {
-        strings: ["Developer", "Python Expert", "UI Designer"],
-        typeSpeed: 100,
-        backSpeed: 60,
-        loop: true
-    });
+    if($(".typing").length) {
+        var typed = new Typed(".typing", {
+            strings: ["Developer", "Python Expert", "UI Designer"],
+            typeSpeed: 100,
+            backSpeed: 60,
+            loop: true
+        });
+    }
 
-    var typed2 = new Typed(".typing-2", {
-        strings: ["Developer", "Python Expert", "UI Designer"],
-        typeSpeed: 100,
-        backSpeed: 60,
-        loop: true
-    });
+    if($(".typing-2").length) {
+        var typed2 = new Typed(".typing-2", {
+            strings: ["Developer", "Python Expert", "UI Designer"],
+            typeSpeed: 100,
+            backSpeed: 60,
+            loop: true
+        });
+    }
 
     // Toggle menu/navbar
     $('.menu-btn').click(function(){
